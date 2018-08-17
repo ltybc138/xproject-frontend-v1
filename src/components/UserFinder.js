@@ -14,7 +14,10 @@ class UserFinder extends Component {
     }
 
     onNameChange = (event) => {
-        this.setState({name: event.target.value})
+        this.setState({
+            loaded: false,
+            name: event.target.value
+        })
     };
 
     handleSubmit = (event) => {
@@ -34,6 +37,7 @@ class UserFinder extends Component {
     render() {
         return (
             <div>
+                <h1>User Finder</h1>
                 <Form inline onSubmit={this.handleSubmit}>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="user" className="mr-sm-2">User</Label>
@@ -41,17 +45,10 @@ class UserFinder extends Component {
                     </FormGroup>
                     <Button onClick={this.handleSubmit}>Submit</Button>
                 </Form>
-                {this.state.loaded ? <UserInfo data={this.state.userData}/> : ""}
+                {this.state.loaded && this.state.name.length != 0 && <UserInfo data={this.state.userData}/>}
                 </div>
         );
     }
 }
-{/*<form onSubmit={this.handleSubmit}>*/}
-    {/*<label>*/}
-        {/*Name: <input type="text" value={this.state.name} onChange={this.onNameChange}/>*/}
-    {/*</label>*/}
-{/*</form>*/}
-{/*<input type="submit" value="submit"/>*/}
-{/*{this.state.loaded ? <UserInfo data={this.state.userData}/> : ""}*/}
 
 export default UserFinder;

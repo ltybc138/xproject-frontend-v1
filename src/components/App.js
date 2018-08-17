@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import UserFinder from "./UserFinder";
+import '../styles/App.css';
+import NavBar from "./NavBar";
+import Main from "./Main";
 
 class App extends Component {
     render() {
         return (
             <div>
-                <UserFinder/>
+                <NavBar/>
+                <Main/>
             </div>
         );
     }
