@@ -1,0 +1,9 @@
+.card {
+    width: 25vw;
+    height: fit-content;
+    margin: 30px;
+}
+
+.cardImage {
+    width: 20vw;
+}

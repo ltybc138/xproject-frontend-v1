@@ -36,7 +36,7 @@ class UserFinder extends Component {
 
     render() {
         return (
-            <div>
+            <div className="bodyContainer">
                 <h1>User Finder</h1>
                 <Form inline onSubmit={this.handleSubmit}>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -45,7 +45,7 @@ class UserFinder extends Component {
                     </FormGroup>
                     <Button onClick={this.handleSubmit}>Submit</Button>
                 </Form>
-                {this.state.loaded && this.state.name.length != 0 && <UserInfo data={this.state.userData}/>}
+                {this.state.loaded && this.state.name.length !== 0 && <UserInfo data={this.state.userData}/>}
                 </div>
         );
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Route} from "react-router-dom";
 import Home from "./Home";
 import UserFinder from "./UserFinder";
-import ProductFinder from "./ProductFinder";
+import Catalog from "./Catalog";
 
 class Main extends Component {
     render() {
@@ -10,7 +10,7 @@ class Main extends Component {
             <div>
                 <Route exact path="/" component={Home} />
                 <Route path="/users" component={UserFinder} />
-                <Route path="/products" component={ProductFinder} />
+                <Route path="/catalog" component={Catalog} />
             </div>
         );
     }

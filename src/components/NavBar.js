@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, NavItem, NavLink, Collapse, NavbarBrand} from 'reactstrap';
 import {Link} from "react-router-dom";
+import axios from 'axios';
+import accLogo from '../res/account_48dp.png';
+import cartLogo from '../res/shopping_cart_48dp.png';
 
 class NavBar extends Component {
     constructor(props) {
@@ -8,8 +11,32 @@ class NavBar extends Component {
 
         this.state = {
             isOpen: false,
-            search: ""
+            search: "",
+            categories: [],
+            listCategories: ""
         }
+    }
+
+    componentDidMount() {
+        this.getAllCategories();
+    }
+
+    getAllCategories() {
+        // TODO replace host string to properties file
+        axios.get("http://localhost:8090/categories")
+            .then(res => {
+                const data = res.data.map((x) => {
+                    return x.category;
+                });
+                const list = data.map((category) =>
+                    <a className="dropdown-item" href="#" key={category}>{category}</a>
+                );
+                this.setState({
+                    categories: data,
+                    listCategories: list
+                });
+                console.log(data);
+            })
     }
 
     handleSearchChange = (event) => {
@@ -25,11 +52,10 @@ class NavBar extends Component {
 
     render() {
         return (
-            <div>
                 <nav className="navbar navbar-expand-sm bg-light navbar-light fixed-top" role="navigation">
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li><a className="navbar-brand" href="#">Brand</a></li>
+                            <li><a className="navbar-brand" href="/catalog">Brand</a></li>
                         </ul>
                         <ul className="nav navbar-nav">
                             <li className="nav-item dropdown">
@@ -37,10 +63,7 @@ class NavBar extends Component {
                                     Categories
                                 </a>
                                 <div className="dropdown-menu">
-                                    <a className="dropdown-item" href="#">Link</a>
-                                    <a className="dropdown-item" href="#">Link</a>
-                                    <a className="dropdown-item" href="#">Link</a>
-                                    <a className="dropdown-item" href="#">Link</a>
+                                    {this.state.listCategories}
                                 </div>
                             </li>
                         </ul>
@@ -54,7 +77,7 @@ class NavBar extends Component {
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <img src="#"/>
+                                <img src={accLogo} className="nav-logo"/>
                             </li>
                             <li>
                                 <a href="/users" className="nav-link">2 Items</a>
@@ -62,39 +85,14 @@ class NavBar extends Component {
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <img src="#"/>
+                                <img src={cartLogo} className="nav-logo"/>
                             </li>
                             <li>
-                                <a href="/products" className="nav-link">Sign In</a>
+                                <a href="#" className="nav-link">Sign In</a>
                             </li>
                         </ul>
                     </div>
                 </nav>
-
-                {/*<nav className="navbar navbar-default" role="navigation">*/}
-                    {/*<div className="navbar-header">*/}
-                        {/*<button type="button" className="navbar-toggle" data-toggle="collapse"*/}
-                                {/*data-target=".navbar-collapse">*/}
-                            {/*<span className="icon-bar"></span>*/}
-                            {/*<span className="icon-bar"></span>*/}
-                            {/*<span className="icon-bar"></span>*/}
-                        {/*</button>*/}
-                    {/*</div>*/}
-                    {/*<div className="navbar-collapse collapse">*/}
-                        {/*<ul className="nav navbar-nav">*/}
-                            {/*<li><a href="#">Left</a></li>*/}
-                        {/*</ul>*/}
-                        {/*<ul className="nav navbar-nav navbar-center">*/}
-                            {/*<li><a href="#">Center</a></li>*/}
-                            {/*<li><a href="#">Center</a></li>*/}
-                            {/*<li><a href="#">Center</a></li>*/}
-                        {/*</ul>*/}
-                        {/*<ul className="nav navbar-nav navbar-right">*/}
-                            {/*<li><a href="#">Right</a></li>*/}
-                        {/*</ul>*/}
-                    {/*</div>*/}
-                {/*</nav>*/}
-            </div>
         );
     }
 }
