@@ -80,7 +80,7 @@ class NavBar extends Component {
                                 <img src={accLogo} className="nav-logo"/>
                             </li>
                             <li>
-                                <a href="/users" className="nav-link">2 Items</a>
+                                <a href="/cart" className="nav-link">0 Items</a>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav">
@@ -88,7 +88,7 @@ class NavBar extends Component {
                                 <img src={cartLogo} className="nav-logo"/>
                             </li>
                             <li>
-                                <a href="#" className="nav-link">Sign In</a>
+                                <a href="/login" className="nav-link">Sign In</a>
                             </li>
                         </ul>
                     </div>
