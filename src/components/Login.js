@@ -32,15 +32,18 @@ class Login extends Component {
                 <Form onSubmit={this.submit}>
                     <FormGroup row>
                         <Label for="email" sm={2}>Email</Label>
-                        <Col>
+                        <Col sm={10}>
                             <Input type="email" name="email" id="email" placeholder="Type your email" onChange={this.onEmailChange}/>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
                         <Label for="password" sm={2}>Password</Label>
-                        <Col>
+                        <Col sm={10}>
                             <Input type="password" name="password" id="password" placeholder="Type your password" onChange={this.onPasswordChange}/>
                         </Col>
+                    </FormGroup>
+                    <FormGroup>
+                        <a href="/registration">Don't have account yet?</a>
                     </FormGroup>
                     <Button type="submit">Submit</Button>
                 </Form>

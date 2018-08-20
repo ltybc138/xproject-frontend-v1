@@ -31,6 +31,7 @@ class Catalog extends Component {
         ));
         return (
             <div className="bodyContainer">
+                <h1>Catalog</h1>
                 <ul>
                     {productCards}
                 </ul>

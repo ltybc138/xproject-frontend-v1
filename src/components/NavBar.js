@@ -77,7 +77,7 @@ class NavBar extends Component {
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <img src={accLogo} className="nav-logo"/>
+                                <img src={cartLogo} className="nav-logo"/>
                             </li>
                             <li>
                                 <a href="/cart" className="nav-link">0 Items</a>
@@ -85,7 +85,7 @@ class NavBar extends Component {
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <img src={cartLogo} className="nav-logo"/>
+                                <img src={accLogo} className="nav-logo"/>
                             </li>
                             <li>
                                 <a href="/login" className="nav-link">Sign In</a>
