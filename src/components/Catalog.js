@@ -9,11 +9,13 @@ class Catalog extends Component {
         this.state = {
             products: []
         };
+        console.log(props);
     }
 
     componentDidMount() {
         const host = "http://localhost:8090/products";
-        const request = host; // TODO add category to request if need
+        const request = host + this.props.location.search; // Add request params for category
+        console.log("Trying to request: " + request);
         axios.get(request)
             .then(res => {
                 const data = res.data;

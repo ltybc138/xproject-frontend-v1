@@ -28,14 +28,14 @@ class NavBar extends Component {
                 const data = res.data.map((x) => {
                     return x.category;
                 });
-                const list = data.map((category) =>
-                    <a className="dropdown-item" href="#" key={category}>{category}</a>
+                const list = res.data.map((category) =>
+                    <a className="dropdown-item" href={"/catalog?categoryTag=" + category.tag} key={category.category}>{category.category}</a>
                 );
                 this.setState({
                     categories: data,
                     listCategories: list
                 });
-                console.log(data);
+                console.log(res.data);
             })
     }
 
