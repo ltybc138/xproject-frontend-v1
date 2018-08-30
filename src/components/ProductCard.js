@@ -9,7 +9,8 @@ class ProductCard extends Component {
     }
 
     addButtonClick = (event) => {
-        Store.addProductToCart(this.props.product);
+        // Store.addProductToCart(this.props.product);
+        // this.props.router.state.cart.push(this.props.product);
         console.log(this.props.product);
     };
 
@@ -21,8 +22,8 @@ class ProductCard extends Component {
                     <CardImg className="cardImage" top src={product.imageSrc} alt="Card image" />
                     <CardBody>
                         <CardTitle>{product.title}</CardTitle>
-                        <CardSubtitle>Sub</CardSubtitle>
-                        <CardText>Text</CardText>
+                        {/*<CardSubtitle>Sub</CardSubtitle>*/}
+                        <CardText>{product.price} $</CardText>
                         <Button onClick={this.addButtonClick}>Add</Button>
                     </CardBody>
                 </Card>

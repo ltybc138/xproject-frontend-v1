@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import "../styles/App.css";
 
 class Login extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="bodyContainer">
+            <div className="bodyContainer formContainer">
                 <h1>Login Page</h1>
                 <Form onSubmit={this.submit}>
                     <FormGroup row>

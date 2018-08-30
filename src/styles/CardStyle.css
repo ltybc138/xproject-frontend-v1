@@ -1,5 +1,5 @@
 .card {
-    width: 25vw;
+    width: fit-content;
     height: fit-content;
     margin: 30px;
 }

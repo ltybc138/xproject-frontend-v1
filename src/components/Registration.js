@@ -47,7 +47,7 @@ class Registration extends Component {
 
     render() {
         return (
-            <div className="bodyContainer">
+            <div className="bodyContainer formContainer">
                 <h1>Registration page</h1>
                 <Form onSubmit={this.submit}>
                     <FormGroup row>

@@ -6,10 +6,27 @@ class Catalog extends Component {
     constructor(props) {
         super(props);
 
+        const category = this.findCategoryFromQuery(this.props);
         this.state = {
+            category: category,
             products: []
         };
-        console.log(props);
+        console.log(this.props);
+    }
+
+    findCategoryFromQuery(props) {
+        let category = "";
+        const query = props.location.search;
+        let isCategoryStarted = false;
+        for (let i = 0; i < query.length; i++) {
+            if (isCategoryStarted) {
+                category += query[i];
+            }
+            if (query[i] === '=') {
+                isCategoryStarted = true;
+            }
+        }
+        return category;
     }
 
     componentDidMount() {
@@ -29,14 +46,26 @@ class Catalog extends Component {
 
     render() {
         const productCards = this.state.products.map(product => (
-            <li key={product.title}><ProductCard product={product}/></li>
+            <div className="col-xl-4" key={product.title}><ProductCard product={product}/></div>
         ));
+        // const productCards = this.state.products.map(product => {
+        //    <ProductCard product={product}/>
+        // });
+        const rowsCount = Math.ceil(productCards.length / 4);
         return (
             <div className="bodyContainer">
-                <h1>Catalog</h1>
-                <ul>
-                    {productCards}
-                </ul>
+
+
+                <div className="d-flex justify-content-center"><h1>{this.state.category}</h1></div>
+                <div className="container">
+                    <div className="row">
+                        {productCards}
+                    </div>
+                </div>
+
+                {/*<ul>*/}
+                    {/*{productCards}*/}
+                {/*</ul>*/}
             </div>
         );
     }

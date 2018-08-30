@@ -34,3 +34,8 @@
 .bodyContainer {
   margin-top: 60px;
 }
+
+.formContainer {
+  width: 800px;
+  margin-left: 300px;
+}
