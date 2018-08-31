@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "../styles/CardStyle.css";
 import {Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
-import Store from '../Store';
 
 class ProductCard extends Component {
     constructor(props) {
@@ -9,8 +8,6 @@ class ProductCard extends Component {
     }
 
     addButtonClick = (event) => {
-        // Store.addProductToCart(this.props.product);
-        // this.props.router.state.cart.push(this.props.product);
         console.log(this.props.product);
     };
 

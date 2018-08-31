@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProductCard from "./ProductCard";
+import ServerErrorPage from "./error-pages/ServerErrorPage";
 
 class Catalog extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class Catalog extends Component {
         const category = this.findCategoryFromQuery(this.props);
         this.state = {
             category: category,
+            failedToConnect: false,
             products: []
         };
         console.log(this.props);
@@ -41,6 +43,7 @@ class Catalog extends Component {
             })
             .catch(error => {
                 console.log(error);
+                this.setState({failedToConnect: true});
             })
     }
 
@@ -48,24 +51,19 @@ class Catalog extends Component {
         const productCards = this.state.products.map(product => (
             <div className="col-xl-4" key={product.title}><ProductCard product={product}/></div>
         ));
-        // const productCards = this.state.products.map(product => {
-        //    <ProductCard product={product}/>
-        // });
-        const rowsCount = Math.ceil(productCards.length / 4);
+
         return (
             <div className="bodyContainer">
-
-
                 <div className="d-flex justify-content-center"><h1>{this.state.category}</h1></div>
-                <div className="container">
-                    <div className="row">
-                        {productCards}
+                {this.state.failedToConnect ?
+                    <ServerErrorPage/>
+                    :
+                    <div className="container">
+                        <div className="row">
+                            {productCards}
+                        </div>
                     </div>
-                </div>
-
-                {/*<ul>*/}
-                    {/*{productCards}*/}
-                {/*</ul>*/}
+                }
             </div>
         );
     }

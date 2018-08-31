@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 
-class Cart extends Component {
+class UserInfo extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
     }
 
     render() {
         return (
             <div className="bodyContainer">
-                <h1>Cart</h1>
+                <h1>User Info</h1>
             </div>
         );
     }
-}
 
-export default Cart;
+}
