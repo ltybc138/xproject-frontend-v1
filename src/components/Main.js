@@ -5,6 +5,7 @@ import Catalog from "./Catalog";
 import Login from "./Login";
 import Registration from "./Registration";
 import Cart from "./Cart";
+import UserInfo from "./UserInfo";
 
 class Main extends Component {
     render() {
@@ -15,6 +16,7 @@ class Main extends Component {
                 <Route path="/catalog" component={Catalog} />
                 <Route path="/login" component={Login}/>
                 <Route path="/registration" component={Registration}/>
+                <Route path="/user" component={UserInfo} />
             </div>
         );
     }

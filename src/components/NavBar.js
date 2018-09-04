@@ -88,7 +88,7 @@ class NavBar extends Component {
                                 <img src={accLogo} className="nav-logo"/>
                             </li>
                             <li>
-                                <a href="/login" className="nav-link">Sign In</a>
+                                <a href="/user" className="nav-link">Sign In</a>
                             </li>
                         </ul>
                     </div>
