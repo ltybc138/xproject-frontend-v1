@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Home from "./Home";
 
 class UserInfo extends Component {
     constructor(props) {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import "../styles/CardStyle.css";
-import {Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from "reactstrap";
+import { connect } from "react-redux";
+import {addProductToBasket, getBasket} from "./store/actions/actionCreators";
+import { bindActionCreators } from "redux";
 
 class ProductCard extends Component {
     constructor(props) {
@@ -8,7 +11,11 @@ class ProductCard extends Component {
     }
 
     addButtonClick = (event) => {
-        console.log(this.props.product);
+        // console.log(this.props.product);
+        const product = this.props.product;
+        console.log(this.props.getBasket());
+        console.log(this.props.addProductToBasket(product));
+        console.log(this.props.getBasket());
     };
 
     render() {
@@ -29,4 +36,17 @@ class ProductCard extends Component {
     }
 }
 
-export default ProductCard;
+const mapStateToProps = state => {
+    return {
+        items: state.items
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        addProductToBasket,
+        getBasket
+    }, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (ProductCard);
