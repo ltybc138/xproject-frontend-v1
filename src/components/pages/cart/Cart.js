@@ -1,6 +1,6 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {bindActionCreators} from "redux";
-import {addProductToBasket, removeProductFromBasket} from "./store/actions/actionCreators";
+import {addProductToBasket, removeProductFromBasket} from "../../../actions/actionCreators";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 
@@ -26,7 +26,7 @@ class Cart extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        items: state.items // maybe shity remove {{.items}}
+        items: state.items
     }
 };
 
@@ -37,5 +37,4 @@ const mapDispatchToProps = dispatch => {
     }, dispatch);
 };
 
-// export default connect(mapStateToProps,  mapDispatchToProps) (Cart);
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Cart));

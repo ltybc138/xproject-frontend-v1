@@ -1,23 +1,16 @@
-import React, {Component, PureComponent} from 'react';
-import "../styles/CardStyle.css";
-import { Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from "reactstrap";
+import React, {PureComponent} from 'react';
+import "../../../styles/CardStyle.css";
+import { Button, Card, CardBody, CardImg, CardText, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
-import {addProductToBasket, removeProductFromBasket} from "./store/actions/actionCreators";
+import {addProductToBasket} from "../../../actions/actionCreators";
 import { bindActionCreators } from "redux";
 import {withRouter} from "react-router";
 
 class ProductCard extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
     addButtonClick = (event) => {
-        // console.log(this.props.product);
         const product = this.props.product;
-        // console.log("ProductCard.props.items", this.props.items);
         console.log(this.props.addProductToBasket(product));
         console.log(this.props);
-        // console.log("ProductCard.props.items", this.props.items);
     };
 
     render() {

@@ -1,7 +1,7 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import axios from 'axios';
 import ProductCard from "./ProductCard";
-import ServerErrorPage from "./error-pages/ServerErrorPage";
+import ServerErrorPage from "../../error-pages/ServerErrorPage";
 import {withRouter} from "react-router";
 
 class Catalog extends PureComponent {

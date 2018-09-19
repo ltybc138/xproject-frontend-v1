@@ -1,11 +1,11 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {Route} from "react-router-dom";
-import Home from "./Home";
-import Catalog from "./Catalog";
-import Login from "./Login";
-import Registration from "./Registration";
-import Cart from "./Cart";
-import UserInfo from "./UserInfo";
+import Home from "../pages/catalog/Home";
+import Catalog from "../pages/catalog/Catalog";
+import Login from "../pages/user/Login";
+import Registration from "../pages/user/Registration";
+import Cart from "../pages/cart/Cart";
+import UserInfo from "../pages/user/UserInfo";
 import {Switch, withRouter} from "react-router";
 
 class Main extends PureComponent {

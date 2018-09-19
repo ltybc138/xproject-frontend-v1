@@ -22,17 +22,6 @@ const INITIAL_DATA = {
 function BasketReducer(state = INITIAL_DATA, action) {
     switch (action.type) {
         case ADD_PRODUCT_TO_BASKET:
-            // console.log("BasketReducer.state.items:" + state.items);
-            // let newState = state.items.push(action.item);
-            // console.log("BasketReducer.state.newState:" + newState);
-            // state = newState;
-            // return newState;
-
-            // return Object.assign({}, state, {
-            //     ...state,
-            //     items: action.item
-            // });
-            //
             console.log("BasketReducer.state.items:" + state.items);
             state = {
                 items: [
@@ -42,10 +31,6 @@ function BasketReducer(state = INITIAL_DATA, action) {
             };
             console.log("BasketReducer.state.items:" + state.items);
             return state;
-            // return {
-            //     ...state,
-            //     action.item
-            // }
         case REMOVE_PRODUCT_FROM_BASKET:
             // TODO replace this shit
             return state.filter(item => item.id === action.item.id);

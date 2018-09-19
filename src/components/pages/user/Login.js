@@ -1,6 +1,6 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
-import "../styles/App.css";
+import "../../../styles/App.css";
 import {withRouter} from "react-router";
 
 class Login extends PureComponent {

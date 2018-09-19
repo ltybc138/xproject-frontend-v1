@@ -1,6 +1,5 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import axios from 'axios';
-import Home from "./Home";
 import {withRouter} from "react-router";
 
 class UserInfo extends PureComponent {

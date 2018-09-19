@@ -1,10 +1,8 @@
-import React, {Component, PureComponent} from 'react';
-import {Navbar, Nav, NavItem, Collapse, NavbarBrand} from 'reactstrap';
+import React, {PureComponent} from 'react';
 import {Link} from "react-router-dom";
-import {NavLink} from "react-router-dom"
 import axios from 'axios';
-import accLogo from '../res/account_48dp.png';
-import cartLogo from '../res/shopping_cart_48dp.png';
+import accLogo from '../../res/account_48dp.png';
+import cartLogo from '../../res/shopping_cart_48dp.png';
 import {withRouter} from "react-router";
 
 class NavBar extends PureComponent {
@@ -60,7 +58,7 @@ class NavBar extends PureComponent {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-sm bg-light navbar-light fixed-top" role="navigation">
+            <div className="navbar navbar-expand-sm bg-light navbar-light fixed-top" role="navigation">
                 <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav">
                         <li>
@@ -88,7 +86,7 @@ class NavBar extends PureComponent {
                     </ul>
                     <ul className="nav navbar-nav">
                         <li>
-                            <img src={cartLogo} className="nav-logo"/>
+                            <img src={cartLogo} alt="" className="nav-logo"/>
                         </li>
                         <li>
                             <Link to="/cart" className="nav-link">0 Items</Link>
@@ -96,14 +94,14 @@ class NavBar extends PureComponent {
                     </ul>
                     <ul className="nav navbar-nav">
                         <li>
-                            <img src={accLogo} className="nav-logo"/>
+                            <img src={accLogo} alt="" className="nav-logo"/>
                         </li>
                         <li>
                             <Link to="/user" className="nav-link">Sign In</Link>
                         </li>
                     </ul>
                 </div>
-            </nav>
+            </div>
         );
     }
 }

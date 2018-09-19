@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
 import {withRouter} from "react-router";
 
