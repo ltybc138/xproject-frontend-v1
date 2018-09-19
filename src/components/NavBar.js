@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import {Navbar, Nav, NavItem, NavLink, Collapse, NavbarBrand} from 'reactstrap';
+import React, {Component, PureComponent} from 'react';
+import {Navbar, Nav, NavItem, Collapse, NavbarBrand} from 'reactstrap';
 import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom"
 import axios from 'axios';
 import accLogo from '../res/account_48dp.png';
 import cartLogo from '../res/shopping_cart_48dp.png';
+import {withRouter} from "react-router";
 
-class NavBar extends Component {
+class NavBar extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -21,6 +23,7 @@ class NavBar extends Component {
         this.getAllCategories();
     }
 
+    // TODO replace links with new components rendering links called UpdateBlock.js
     getAllCategories() {
         // TODO replace host string to properties file
         axios.get("http://localhost:8090/categories")
@@ -28,9 +31,13 @@ class NavBar extends Component {
                 const data = res.data.map((x) => {
                     return x.category;
                 });
+
+                // todo the problem here might happen when uri changes from catalog to ?categoryTag=... .React might think that uri did not changed
                 const list = res.data.map((category) =>
-                    <a className="dropdown-item" href={"/catalog?categoryTag=" + category.tag} key={category.category}>{category.category}</a>
+                    <Link className="dropdown-item" to={"/catalog/:" + category.tag}
+                             key={category.category}>{category.category}</Link>
                 );
+
                 this.setState({
                     categories: data,
                     listCategories: list
@@ -47,54 +54,58 @@ class NavBar extends Component {
 
     onSearchClick = (event) => {
         console.log(this.state.search);
+        alert("Your search request: " + this.state.search);
         event.preventDefault();
     };
 
     render() {
         return (
-                <nav className="navbar navbar-expand-sm bg-light navbar-light fixed-top" role="navigation">
-                    <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav">
-                            <li><a className="navbar-brand" href="/catalog">Brand</a></li>
-                        </ul>
-                        <ul className="nav navbar-nav">
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                    Categories
-                                </a>
-                                <div className="dropdown-menu">
-                                    {this.state.listCategories}
+            <nav className="navbar navbar-expand-sm bg-light navbar-light fixed-top" role="navigation">
+                <div className="collapse navbar-collapse">
+                    <ul className="nav navbar-nav">
+                        <li>
+                            <Link className="navbar-brand" to="/catalog">Brand</Link>
+                        </li>
+                    </ul>
+                    <ul className="nav navbar-nav">
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbardrop" data-toggle="dropdown">
+                                Categories
+                            </Link>
+                            <div className="dropdown-menu">
+                                {this.state.listCategories}
                                 </div>
-                            </li>
-                        </ul>
-                        <ul className="nav nabar-nav">
-                            <li>
-                                <form className="form-inline" onSubmit={this.onSearchClick}>
-                                    <input type="text" placeholder="Search" className="form-control mr-sm-2" onChange={this.handleSearchChange}/>
-                                    <button className="btn btn-success" type="submit">Search</button>
-                                </form>
-                            </li>
-                        </ul>
-                        <ul className="nav navbar-nav">
-                            <li>
-                                <img src={cartLogo} className="nav-logo"/>
-                            </li>
-                            <li>
-                                <a href="/cart" className="nav-link">0 Items</a>
-                            </li>
-                        </ul>
-                        <ul className="nav navbar-nav">
-                            <li>
-                                <img src={accLogo} className="nav-logo"/>
-                            </li>
-                            <li>
-                                <a href="/user" className="nav-link">Sign In</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                        </li>
+                    </ul>
+                    <ul className="nav nabar-nav">
+                        <li>
+                            <form className="form-inline" onSubmit={this.onSearchClick}>
+                                <input type="text" placeholder="Search" className="form-control mr-sm-2"
+                                       onChange={this.handleSearchChange}/>
+                                <button className="btn btn-success" type="submit">Search</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul className="nav navbar-nav">
+                        <li>
+                            <img src={cartLogo} className="nav-logo"/>
+                        </li>
+                        <li>
+                            <Link to="/cart" className="nav-link">0 Items</Link>
+                        </li>
+                    </ul>
+                    <ul className="nav navbar-nav">
+                        <li>
+                            <img src={accLogo} className="nav-logo"/>
+                        </li>
+                        <li>
+                            <Link to="/user" className="nav-link">Sign In</Link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         );
     }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

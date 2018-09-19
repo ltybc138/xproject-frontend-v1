@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component, PureComponent} from 'react';
 import axios from 'axios';
 import ProductCard from "./ProductCard";
 import ServerErrorPage from "./error-pages/ServerErrorPage";
+import {withRouter} from "react-router";
 
-class Catalog extends Component {
+class Catalog extends PureComponent {
     constructor(props) {
         super(props);
 
-        const category = this.findCategoryFromQuery(this.props);
+        const category = this.findCategoryFromQuery();
         this.state = {
             category: category,
             failedToConnect: false,
@@ -16,24 +17,22 @@ class Catalog extends Component {
         console.log(this.props);
     }
 
-    findCategoryFromQuery(props) {
+    findCategoryFromQuery() {
+        const tag = this.props.match.params.tag;
         let category = "";
-        const query = props.location.search;
-        let isCategoryStarted = false;
-        for (let i = 0; i < query.length; i++) {
-            if (isCategoryStarted) {
-                category += query[i];
-            }
-            if (query[i] === '=') {
-                isCategoryStarted = true;
-            }
+        if (tag !== undefined) {
+            category = tag.substring(1, tag.length);
         }
         return category;
     }
 
     componentDidMount() {
         const host = "http://localhost:8090/products";
-        const request = host + this.props.location.search; // Add request params for category
+        let request = host;
+        if (this.state.category.length > 0) {
+            request += "?categoryTag=" + this.state.category;
+        }
+        console.log(this.props.match.params.tag);
         console.log("Trying to request: " + request);
         axios.get(request)
             .then(res => {
@@ -54,7 +53,7 @@ class Catalog extends Component {
 
         return (
             <div className="bodyContainer">
-                <div className="d-flex justify-content-center"><h1>{this.state.category}</h1></div>
+                <div className="d-flex justify-content-center"><h1>{this.state.category === "" ? "Catalog" : this.state.category}</h1></div>
                 {this.state.failedToConnect ?
                     <ServerErrorPage/>
                     :
@@ -69,4 +68,4 @@ class Catalog extends Component {
     }
 }
 
-export default Catalog;
+export default withRouter(Catalog);

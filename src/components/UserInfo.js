@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component, PureComponent} from 'react';
 import axios from 'axios';
 import Home from "./Home";
+import {withRouter} from "react-router";
 
-class UserInfo extends Component {
+class UserInfo extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -31,6 +32,7 @@ class UserInfo extends Component {
             <div className="bodyContainer">
                 <h1>User Info</h1>
                 <table>
+                    <tbody>
                     <tr>
                         <td>Login:</td>
                         <td>{data.login}</td>
@@ -45,16 +47,17 @@ class UserInfo extends Component {
                     </tr>
                     <tr>
                         <td>Phone:</td>
-                        <td>{data.phone}</td>
+                        <td>{data.phone === null ? "null" : data.phone}</td>
                     </tr>
                     <tr>
                         <td>Role:</td>
                         <td>{data.role}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         );
     }
 }
 
-export default UserInfo;
+export default withRouter(UserInfo);

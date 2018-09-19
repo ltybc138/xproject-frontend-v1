@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component, PureComponent} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import {withRouter} from "react-router";
 
-class Registration extends Component {
+class Registration extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -84,4 +85,4 @@ class Registration extends Component {
     }
 }
 
-export default Registration;
+export default withRouter(Registration);

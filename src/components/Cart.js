@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from "redux";
-import {addProductToBasket, getBasket, removeProductFromBasket} from "./store/actions/actionCreators";
+import React, {Component, PureComponent} from 'react';
+import {bindActionCreators} from "redux";
+import {addProductToBasket, removeProductFromBasket} from "./store/actions/actionCreators";
 import {connect} from "react-redux";
+import {withRouter} from "react-router";
 
-class Cart extends Component {
+class Cart extends PureComponent {
     render() {
-        console.log(this.props.items);
+        console.log("Cart.props.items" + this.props.items);
         const products = this.props.items;
         const listOfItems = products.map(product => {
             return (
@@ -15,7 +16,6 @@ class Cart extends Component {
         return (
             <div className="bodyContainer">
                 <h1>Cart</h1>
-                <p>{console.log("Cart props=" + this.props)}</p>
                 <ul>
                     {listOfItems}
                 </ul>
@@ -26,16 +26,16 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
     return {
-        items: state.items
+        items: state.items // maybe shity remove {{.items}}
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         addProductToBasket,
-        removeProductFromBasket,
-        getBasket
-    }, dispatch)
+        removeProductFromBasket
+    }, dispatch);
 };
 
-export default connect(mapStateToProps,  mapDispatchToProps) (Cart);
+// export default connect(mapStateToProps,  mapDispatchToProps) (Cart);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Cart));

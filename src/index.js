@@ -2,20 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './components/App';
-import { BrowserRouter } from "react-router-dom";
-import { compose, createStore } from "redux";
-import MainReducer from "./components/store/reducers/MainReducer";
-import { Provider } from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
+import {applyMiddleware, compose, createStore} from "redux";
+import {Provider} from "react-redux";
+import {connectRouter, routerMiddleware, ConnectedRouter} from "connected-react-router"
 import BasketReducer from "./components/store/reducers/BasketReducer";
+import {createBrowserHistory} from "history";
+import MainReducer from "./components/store/reducers/MainReducer";
 
 // compose for enabling redux dev tools extension
-const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(BasketReducer);
+// const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(BasketReducer);
+
+// const store = createStore(BasketReducer);
+const history = createBrowserHistory();
+
+const store = createStore(
+    connectRouter(history)(BasketReducer),
+    compose(
+        applyMiddleware(
+            routerMiddleware(history)
+        )
+    )
+);
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <App/>
-        </BrowserRouter>
+        </ConnectedRouter>
+        {/*<Router>*/}
+            {/*<App/>*/}
+        {/*</Router>*/}
     </Provider>
     , document.getElementById('root')
 );

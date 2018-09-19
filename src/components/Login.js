@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component, PureComponent} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
 import "../styles/App.css";
+import {withRouter} from "react-router";
 
-class Login extends Component {
+class Login extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -53,4 +54,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
